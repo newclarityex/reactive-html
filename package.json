@@ -1,0 +1,19 @@
+{
+  "name": "reactive-html",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": "https://github.com/newclarityex/reactive-html.git",
+  "author": "newclarityex <newclearex@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "type": "module"
+}
