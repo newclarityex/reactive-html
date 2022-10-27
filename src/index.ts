@@ -85,7 +85,9 @@ const checkElementAttributes = (element: Element, variableMap: VariableMap) => {
 
 const checkElement = (element: Element, variableMap: VariableMap) => {
     checkElementAttributes(element, variableMap);
-    element.childNodes.forEach((node) => {
+    for (let i = element.childNodes.length - 1; i >= 0; i--) {
+        const node = element.childNodes[i];
+
         // Split off variables into independent text nodes
         if (node.nodeType === Node.TEXT_NODE && node.textContent && variableRegex.test(node.textContent)) {
             const variables = findVariables(node.textContent);
@@ -101,7 +103,7 @@ const checkElement = (element: Element, variableMap: VariableMap) => {
         if (node.nodeType === Node.ELEMENT_NODE) {
             checkElementAttributes(element, variableMap);
         }
-    });
+    }
 
 }
 
