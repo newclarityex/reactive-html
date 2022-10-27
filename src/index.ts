@@ -74,7 +74,10 @@ const checkElementAttributes = (element: Element, variableMap: VariableMap) => {
     const attributes = element.attributes;
     for (let { value } of attributes) {
         if (variableRegex.test(value)) {
-            const variable = getVariable(value, variableMap);
+            const checkVar = value.match(variableRegex);
+            if (!checkVar) continue;
+            const varStr = checkVar[0];
+            const variable = getVariable(varStr, variableMap);
             variable.elements.push({
                 original: element.cloneNode() as Element,
                 current: element
@@ -101,7 +104,7 @@ const checkElement = (element: Element, variableMap: VariableMap) => {
 
         // if node is element node, check its children
         if (node.nodeType === Node.ELEMENT_NODE) {
-            checkElementAttributes(element, variableMap);
+            checkElementAttributes(node as Element, variableMap);
         }
     }
 
@@ -117,7 +120,7 @@ function updateVariable(variableMap: VariableMap, variable: string, value: any) 
 
     for (const element of variableElements.elements) {
         for (const attribute of element.original.attributes) {
-            element.current.setAttribute(attribute.name, attribute.value.replace(variable, value));
+            element.current.setAttribute(attribute.name, attribute.value.replace(`/${variable}/`, value));
         }
     }
 }
