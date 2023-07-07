@@ -2,7 +2,7 @@
 A typesafe clientside javascript library to add reactive variables in your HTML
 
 ## Installing
-Install this module with `yarn add reactive-htmlor `npm i reactive-html`.
+Install this module with `yarn add reactive-html` or `npm i reactive-html`.
 
 ## Use within HTML
 ### Add Variables to html using /variable/
